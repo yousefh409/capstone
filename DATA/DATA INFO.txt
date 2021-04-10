@@ -1,0 +1,7 @@
+Diameter of ball: 4.9 in.
+Height of background: 26.2 in
+Width of background: 46.5 in.
+Temperature: 71 F
+Wind: 0 mph
+Date: April 1, 2021
+Location: Santa Clara, California
