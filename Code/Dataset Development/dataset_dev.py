@@ -7,18 +7,21 @@ data_path = '../../DATA/'
 def generate_points(video_inf):
     points = {a: video_inf["points"][a] for a in list(video_inf["points"].keys())[1:]}
     velocities = video_inf["velocities"]
+
     generated = []
-    for key in list(points.keys())[1:]:
-        to_add = {
-            "x": points[key]["x"],
-            "y": points[key]["y"],
-            "t": key,
-            "vY": velocities[key]["vY"],
-            "vX": velocities[key]["vX"],
-            "vYinitial": list(velocities.values())[0]["vY"],
-            "vXinitial": list(velocities.values())[0]["vX"],
-        }
-        generated.append(to_add)
+    
+    for i in range(len(list(points.keys())[:-1])):
+        for key in list(points.keys())[i + 1:]:
+            to_add = {
+                "x": points[key]["x"] - points[list(points.keys())[i]]["x"],
+                "y": points[key]["y"] - points[list(points.keys())[i]]["y"],
+                "t": key - list(points.keys())[i],
+                "vY": velocities[key]["vY"],
+                "vX": velocities[key]["vX"],
+                "vYinitial": list(velocities.values())[i]["vY"],
+                "vXinitial": list(velocities.values())[i]["vX"],
+            }
+            generated.append(to_add)
     return generated
 
 
