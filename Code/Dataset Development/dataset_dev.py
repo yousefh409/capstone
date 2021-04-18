@@ -1,6 +1,7 @@
 from analyze_video import analyze_video
 import glob
 import pandas as pd
+import matplotlib.pyplot as plt
 
 data_path = '../../DATA/'
 
@@ -9,7 +10,7 @@ def generate_points(video_inf):
     velocities = video_inf["velocities"]
 
     generated = []
-    
+
     for i in range(len(list(points.keys())[:-1])):
         for key in list(points.keys())[i + 1:]:
             to_add = {
@@ -22,6 +23,7 @@ def generate_points(video_inf):
                 "vXinitial": list(velocities.values())[i]["vX"],
             }
             generated.append(to_add)
+    
     return generated
 
 
